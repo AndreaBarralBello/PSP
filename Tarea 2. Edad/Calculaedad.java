@@ -17,9 +17,9 @@ public class Calculaedad {
         int dia = 0;
         int mes = 0;
         int anho = 0;
-        String fechaNacimiento = "";
+      
 
-        //Pedimos la fecha de nacimiento por consola
+        // Pedimos la fecha de nacimiento por consola
         System.out.println("**** CALCULA TU EDAD ******");
         System.out.println("Introduce tu fecha de nacimiento:");
         System.out.println("Día: ");
@@ -29,29 +29,41 @@ public class Calculaedad {
         System.out.println("Año: ");
         anho = teclado.nextInt();
 
-		//Lo pasamos a int para pasarlo por el comando
-        String [] lineaComandos = {"java", "Edad", String.valueOf(dia),String.valueOf(mes),
+        teclado.close();
 
-    String.valueOf(anho)};
+        // Lo pasamos a int para pasarlo por el comando
+        String[] nuevosArgs = { "java", "Edad", String.valueOf(dia), String.valueOf(mes),
 
-        //Crea e inicia un proceso que estará formado de argumentos
-        //El proceso se inicia fuera del try-with-resources
-        Process proceso = new ProcessBuilder(lineaComandos).start();
-        	//cañería
-        try (InputStream is = proceso.getInputStream(); 
-			//char
-            InputStreamReader isr = new InputStreamReader(is); 
-			//líneas
-            BufferedReader br = new BufferedReader(isr); 
-	){
-              
-    //Lee lo que escribe el hijo. El sout de Edad
-    String line ="";
-	while((line = br.readLine()) != null){
-		System.out.println(line);
-	}
-	
-		//Primero se ponen las excepciones específicas
+                String.valueOf(anho) };
+
+        // Crea e inicia un proceso que estará formado de argumentos
+        // El proceso se inicia fuera del try-with-resources
+        Process proceso = new ProcessBuilder(nuevosArgs).start();
+        // cañería
+        try (InputStream is = proceso.getInputStream();
+                // char
+                InputStreamReader isr = new InputStreamReader(is);
+                // líneas
+                BufferedReader br = new BufferedReader(isr);) {
+
+            // Lee lo que escribe el hijo. El sout de Edad
+            String line = "";
+
+            /*
+             * try {
+             * int edad = Integer.parseInt(line);
+             * } catch (ArrayIndexOutOfBoundsException e) {
+             * 
+             * } catch (Exception e1) {
+             * System.out.println("El formato de datos es dd mm aaaa");
+             * 
+             */
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            // Primero se ponen las excepciones específicas
         } catch (ArrayIndexOutOfBoundsException e) {
 
         } catch (IOException e1) {
@@ -59,7 +71,7 @@ public class Calculaedad {
 
             System.exit(0);
         } catch (Exception e) {
-            e.printStackTrace();		
+            e.printStackTrace();
         }
 
     }

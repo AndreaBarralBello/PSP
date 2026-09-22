@@ -17,13 +17,13 @@ public static void main(String[] args) {
     LocalDate fechaNacimiento = LocalDate.of(anho, mes, dia);
 
     //Fecha actual
-    LocalDate fechaHoy = LocalDate.now();
+    LocalDate ahora = LocalDate.now();
 
     //Calculamos la diferencia entre las dos fechas
-    Period edad = Period.between(fechaNacimiento, fechaHoy);
+    Period edad = fechaNacimiento.until(ahora);
 
     //probamos si funciona
-    System.out.println("Tu edad es: "+edad.getYears());
+    System.out.println(edad.getYears());
 
     
 }catch(ArrayIndexOutOfBoundsException e){
