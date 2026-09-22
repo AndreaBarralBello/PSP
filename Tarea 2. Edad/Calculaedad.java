@@ -3,8 +3,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculaedad {
@@ -31,14 +29,14 @@ public class Calculaedad {
         System.out.println("Año: ");
         anho = teclado.nextInt();
 
-		LocalDate fecha = LocalDate.of(anho, mes, dia);
-		//Lo pasamos a String para pasarlo como argumento (String[] args)
-		fechaNacimiento = fecha.toString();
+		//Lo pasamos a int para pasarlo por el comando
+        String [] lineaComandos = {"java", "Edad", String.valueOf(dia),String.valueOf(mes),
 
+    String.valueOf(anho)};
 
         //Crea e inicia un proceso que estará formado de argumentos
         //El proceso se inicia fuera del try-with-resources
-        Process proceso = new ProcessBuilder(args).start();
+        Process proceso = new ProcessBuilder(lineaComandos).start();
         	//cañería
         try (InputStream is = proceso.getInputStream(); 
 			//char
@@ -47,9 +45,8 @@ public class Calculaedad {
             BufferedReader br = new BufferedReader(isr); 
 	){
               
-	System.out.println("Salida"+ Arrays.toString(args));
-	String line = "";
-
+    //Lee lo que escribe el hijo. El sout de Edad
+    String line ="";
 	while((line = br.readLine()) != null){
 		System.out.println(line);
 	}
@@ -66,3 +63,4 @@ public class Calculaedad {
         }
 
     }
+}
